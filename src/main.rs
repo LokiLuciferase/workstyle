@@ -139,8 +139,10 @@ fn run() -> Result<()> {
                 .next()
                 .context("Unexpected workspace name")?;
             if new_name.is_empty() {
+                debug!("No windows in workspace {name}, removing name");
                 wm.rename_workspace(&name, num)?;
             } else {
+                debug!("Renaming workspace {name} to {num}{sep}{new_name}");
                 wm.rename_workspace(&name, &format!("{num}{sep}{new_name}"))?;
             }
         }
